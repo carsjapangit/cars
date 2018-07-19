@@ -1,13 +1,21 @@
 import React, { Component } from "react";
+import AppBar from '@material-ui/core/AppBar';
+import ButtonAppBar from './ButtonAppBar';
+import HomeSlider from './HomeSlider';
 
 import '../styles/App.css';
 
 class App extends Component {
     render() {
         return (
-            <div>
-                <h1>My React App!</h1>
-            </div>
+          <div>
+           <ButtonAppBar>
+            </ButtonAppBar>
+
+            <HomeSlider>
+            </HomeSlider>
+              </div>
+
         );
     }
 }

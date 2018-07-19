@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: ["babel-polyfill","./src/index.js"],
@@ -10,19 +11,27 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
       },
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
-      }
+      },
+      {
+    test: /\.(jpg|png|gif|svg)$/i,
+    loader: "file-loader?name=/images/[name].[ext]"
+}
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
-    })
+    }),
+    new CopyWebpackPlugin([
+        {from:'./src/images/',to:'images'} 
+    ]),
+
   ]
 };
