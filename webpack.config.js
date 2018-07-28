@@ -22,7 +22,11 @@ module.exports = {
       {
     test: /\.(jpg|png|gif|svg)$/i,
     loader: "file-loader?name=/images/[name].[ext]"
-}
+  },
+  {
+        test: /\.(eot|woff|woff2|ttf)$/,
+        loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
+      }
     ]
   },
   plugins: [
@@ -30,7 +34,7 @@ module.exports = {
       template: "./src/index.html"
     }),
     new CopyWebpackPlugin([
-        {from:'./src/images/',to:'images'} 
+        {from:'./src/images/',to:'images'}
     ]),
 
   ]
