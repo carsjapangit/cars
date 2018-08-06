@@ -16,12 +16,22 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import IconText from './IconText';
+import { Container, Row, Col } from 'reactstrap';
 
 const styles = theme => ({
+
   card: {
     maxWidth: 700,
     marginRight:10,
     marginLeft:10,
+    marginTop:10,
+    marginBottom:10,
+    '&:hover': {
+      boxShadow: '0 2px 8px 3px rgba(0,0,0,.12)',
+      transition: 'box-shadow .6s,background-color .6s,color .6s,opacity .6s,transform .6s',
+      transform: 'translateY(-4px)'
+   }
   },
   cardHeader: {
   padding:8,
@@ -68,28 +78,28 @@ class CarCard extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <Card className={classes.card}>
-          <CardHeader className={classes.cardHeader}
-            avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
-                H
-              </Avatar>
-            }
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title="Hyundai"
-            subheader="Sep 14, 2016"
-          />
-          <CardMedia
-            className={classes.media}
-            image="images/cars_01.jpg"
-            title="Hyundai"
-          />
+      <div className={classes.cardOuter}>
 
+
+        <Card className={classes.card}>
+
+        <CardMedia
+          className={classes.media}
+          image="images/cars_01.jpg"
+          title="Hyundai"
+        />
+
+        <Container>
+          <Row className="show-grid xsHidden" >
+
+                <IconText iconName="tachometer-alt" text={this.props.cardData.val1}></IconText>
+
+              <IconText iconName="gas-pump-slash" text={this.props.cardData.val2}></IconText>
+
+              <IconText iconName="tachometer-alt"  text={this.props.cardData.val3}></IconText>
+          
+          </Row>
+        </Container>
             <Typography component="p">
               Best Seller
             </Typography>

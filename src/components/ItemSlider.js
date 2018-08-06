@@ -37,16 +37,61 @@ function PrevArrow(props) {
 export default class SimpleSlider extends Component {
   render() {
 
-var settings = {
-  nextArrow: <NextArrow/>,
-    prevArrow: <PrevArrow />,
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      dots:false
+    const cards = [];
+
+    const cardSkeleton = {label1:"Stock Id",
+                          label2:"Maker",
+                          label3:"Model",
+                          label4:"Year",
+                          label5:"Seats",
+                          label6:"Availability"};
+    const carDetailList = [
+                          {val1:"6940",
+                          val2:"TOYOTA",
+                          val3:"COROLLA AXIO",
+                          val4:"2014/04",
+                          val5:"5",
+                          val6:"AVAILABLE"},
+                          {val1:"6941",
+                          val2:"TOYOTA",
+                          val3:"COROLLA AXIO",
+                          val4:"2014/04",
+                          val5:"5",
+                          val6:"AVAILABLE"},
+                          {val1:"6942",
+                          val2:"TOYOTA",
+                          val3:"COROLLA AXIO",
+                          val4:"2014/04",
+                          val5:"5",
+                          val6:"AVAILABLE"},
+                          {val1:"6943",
+                          val2:"TOYOTA",
+                          val3:"COROLLA AXIO",
+                          val4:"2014/04",
+                          val5:"5",
+                          val6:"AVAILABLE"},
+                          {val1:"6940",
+                          val2:"TOYOTA",
+                          val3:"COROLLA AXIO",
+                          val4:"2014/04",
+                          val5:"5",
+                          val6:"AVAILABLE"}];
+
+  var settings = {
+       nextArrow: <NextArrow/>,
+       prevArrow: <PrevArrow />,
+       dots: true,
+       infinite: true,
+       speed: 500,
+       slidesToShow: 3,
+       slidesToScroll: 1,
+       dots:false
 };
+
+carDetailList.forEach((carDetail) =>{
+  cards.push(<CarCard key="carDetail.val1" cardSkeleton={cardSkeleton}
+                      cardData={carDetail}/>);
+});
 
 
 
@@ -54,12 +99,7 @@ var settings = {
       <div>
         <h2>Recomended Cars For You</h2>
         <Slider {...settings}>
-          <CarCard/>
-          <CarCard/>
-          <CarCard/>
-          <CarCard/>
-          <CarCard/>
-          <CarCard/>
+        {cards}
         </Slider>
       </div>
     );
