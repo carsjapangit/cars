@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import ButtonAppBar from './ButtonAppBar';
-import HomeSlider from './HomeSlider';
 import ItemSlider from './ItemSlider';
 import { Container, Row, Col } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';

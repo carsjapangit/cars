@@ -35,6 +35,26 @@ function PrevArrow(props) {
 
 
 export default class SimpleSlider extends Component {
+
+  constructor(props){
+    super(props);
+    this.state ={productList : []};
+  }
+  componentDidMount() {
+    fetch('http://localhost:3000/v1/product',{
+      headers: {
+        'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE1NTIwMTc5MDcsImV4cCI6MTU1MjAyNzkwN30.pjWCXHmrWb6c-W7ZsokJotdry_2cyzLdgGcz3tXAJF8',
+      }})
+      .then(res => {
+          console.log(res);
+          return res.json()
+       })
+      .then(res => { 
+          console.log(res); 
+          this.setState(res)
+       });
+   }
+
   render() {
 
     const cards = [];
@@ -45,37 +65,7 @@ export default class SimpleSlider extends Component {
                           label4:"Year",
                           label5:"Seats",
                           label6:"Availability"};
-    const carDetailList = [
-                          {val1:"6940",
-                          val2:"TOYOTA",
-                          val3:"COROLLA AXIO",
-                          val4:"2014/04",
-                          val5:"5",
-                          val6:"AVAILABLE"},
-                          {val1:"6941",
-                          val2:"TOYOTA",
-                          val3:"COROLLA AXIO",
-                          val4:"2014/04",
-                          val5:"5",
-                          val6:"AVAILABLE"},
-                          {val1:"6942",
-                          val2:"TOYOTA",
-                          val3:"COROLLA AXIO",
-                          val4:"2014/04",
-                          val5:"5",
-                          val6:"AVAILABLE"},
-                          {val1:"6943",
-                          val2:"TOYOTA",
-                          val3:"COROLLA AXIO",
-                          val4:"2014/04",
-                          val5:"5",
-                          val6:"AVAILABLE"},
-                          {val1:"6940",
-                          val2:"TOYOTA",
-                          val3:"COROLLA AXIO",
-                          val4:"2014/04",
-                          val5:"5",
-                          val6:"AVAILABLE"}];
+      const carDetailList = [];
 
   var settings = {
        nextArrow: <NextArrow/>,
@@ -88,7 +78,7 @@ export default class SimpleSlider extends Component {
        dots:false
 };
 
-carDetailList.forEach((carDetail) =>{
+this.state.productList.forEach((carDetail) =>{
   cards.push(<CarCard key="carDetail.val1" cardSkeleton={cardSkeleton}
                       cardData={carDetail}/>);
 });
